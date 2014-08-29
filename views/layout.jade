@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+    script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
+
+  body
+    div.container
+      nav.navbar.navbar-default.navbar-fixed-top
+        div.navbar-header
+          a.navbar-brand(href="/") Gestor de Tareas
+      -if (typeof flash !='undefined')
+        -if( flash.warning)
+          div.alert.alert-warning
+            p= flash.warning
+        -if( flash.error)
+          div.alert.alert-danger
+            p=flash.error
+      block content

@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+	div.row
+		h1 Nueva tarea
+		form(class='form-horizontal', role='form',method='post',action='/tareas')
+			div.form-group
+				label.control-label.col-md-1 Descripcion 
+				div.col-md-4
+					input(type='text',class='form-control',name='descripcion')
+				button(type='submit', class='btn btn-primary') Guardar
+
+	div.row
+		h1 Lista de tareas [#{tareas.length}]
+		table.table.table-hover
+			thead 
+				th Tareas
+			tbody
+				each tarea in tareas
+					tr
+						td.col-md-10 #{tarea.descripcion}
+						td.col-md-1
+							a.btn.btn-primary(href= '/tareas/editar/'+tarea._id) Editar
+						td.col-md-1
+							form(action='/tareas/'+tarea._id, method='post')
+								button.btn.btn-danger(type='submit') Borrar
+								input(name='_method', value='DELETE', type='hidden')
