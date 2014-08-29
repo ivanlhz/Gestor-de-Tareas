@@ -9,9 +9,7 @@ var methodOverride = require('method-override');//Put y delete
 var session = require('express-session');//Para el manejo de las sesiones
 var flash = require("connect-flash");//Para los mensajes de informacion
 
-
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var tareas = require('./routes/tareas');
 
 var app = express();
@@ -32,7 +30,7 @@ app.use(session({
 app.use(flash());//Midware para usar textos de informacion
 
 
-//Habilitamos PUTS  y DELETE
+//Habilitamos PUTS  y DELETE gracias al method-override
 app.use(methodOverride(function(req, res){
   if (req.body && typeof req.body === 'object' && '_method' in req.body) {
     // look in urlencoded POST bodies and delete it
@@ -45,7 +43,6 @@ app.use(methodOverride(function(req, res){
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
 app.use('/tareas',tareas);
 
 /// catch 404 and forward to error handler
